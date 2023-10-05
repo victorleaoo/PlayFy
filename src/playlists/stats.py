@@ -3,7 +3,7 @@ from collections import Counter # see library to install
 from itertools import chain # see library to install
 import numpy as np
 
-from .getPlaylistInfo import createPlaylistDataFrame
+from .getPlaylistInfo import createPlaylistDataFrame, getPlaylist
 
 def get_top_artists(playlist_df):
     """Gets top 5 artists with most tracks apperances on a playlist
@@ -119,6 +119,8 @@ def get_all_stats_together(share_link, access_token):
 
     playlist_df = createPlaylistDataFrame(share_link, access_token)
 
+    playlist_main_info = getPlaylist(share_link, access_token)
+
     top_artists = get_top_artists(playlist_df)
 
     top_albums = get_top_albums(playlist_df)
@@ -128,6 +130,7 @@ def get_all_stats_together(share_link, access_token):
     longest_track, shortest_track = get_longest_and_shortest_track(playlist_df)
 
     playlist_stats = {
+        'playlist': playlist_main_info,
         'top artists': top_artists,
         'top_albums': top_albums,
         'most_popular_track': most_popular_track,

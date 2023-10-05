@@ -32,7 +32,7 @@ def getPlaylist(share_link, access_token):
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        print(response.json())
+        return response.json()
     else:
         print("Request failed with status code: ", response.status_code)
         print("Response content: " + response.text)
@@ -98,10 +98,13 @@ def getPlaylistItems(share_link, access_token):
 
     playlist_items_pages.append(response_page)
 
-    while response_page['next'] is not None:
-        response_page = getPlaylistItemPage(response_page['next'], access_token, next=True)
+    try:
+        while response_page['next'] is not None:
+            response_page = getPlaylistItemPage(response_page['next'], access_token, next=True)
 
-        playlist_items_pages.append(response_page)
+            playlist_items_pages.append(response_page)
+    except:
+        Exception
 
     return playlist_items_pages
     

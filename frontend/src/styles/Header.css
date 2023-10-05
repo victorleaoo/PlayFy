@@ -1,0 +1,131 @@
+.nav {
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    z-index: 2;
+
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    position: fixed;
+    
+    padding: 20px 36px;
+    
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    
+    align-items: center;
+    
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(29,185,84,1) 0%, rgba(30,215,96,1) 100%);
+}
+
+.nav--h1{
+    color: white;
+    font-size: 30px;
+}
+
+.middle-section{
+    display: flex;
+    align-items: center;
+}
+
+.middle-section--button.enabled{
+    background: #191414;
+
+    border-radius: 999px;
+    border: 0;
+    
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    
+    color: #FFFFFF;
+    
+    cursor: pointer;
+    
+    font-size: 16px;
+    font-weight: 700;
+    
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+}
+
+.middle-section--button.enabled:active {
+    background-color: gray;
+    transform: translateY(2px);
+}
+
+.middle-section--button.disabled{
+    background: #191414;
+
+    border-radius: 999px;
+    border: 0;
+    
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    
+    color: #FFFFFF;
+
+    opacity: 0.7;
+    
+    cursor: not-allowed;
+    
+    font-size: 16px;
+    font-weight: 700;
+    
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+}
+
+.middle-section--textarea{
+    flex: 1;
+
+    overflow: auto;
+
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 1em;
+
+    resize: none;
+
+    border: none;
+	border-radius: 20px;
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1100px) {
+    .middle-section--textarea {
+      width: 300px;
+    }
+    .nav--h1{
+        font-size: 20px;
+        margin-right: 5px;
+    }
+    .middle-section--button{
+        margin-right: 5px;
+    }
+    .nav{
+        padding-left: 10px;
+    }
+    .nav--image{
+        display:none;
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1919px) {
+    .middle-section--textarea {
+        width: 750px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .middle-section--textarea {
+        width: 1000px;
+    }
+}
+
+.nav--image{
+    height: 45px;
+}
