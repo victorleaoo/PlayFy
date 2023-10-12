@@ -9,7 +9,7 @@ const Header = (props) => {
   return (
     <div className='nav'>
         <h1 className='nav--h1'>
-          Spotipy
+          PlayPy
         </h1>
 
         <div className='middle-section'>

@@ -1,8 +1,10 @@
 import React from 'react'
 
-import Table from './statsComponents/Table'
+import TopTable from './statsComponents/TopTable'
+import TrackTable from './statsComponents/TrackTable'
 import LoadedFalse from './statsComponents/LoadedFalse'
 import SpotifyLogin from './statsComponents/SpotifyLogin'
+import PlaylistInfo from './statsComponents/PlaylistInfo'
 
 import { getTopArtists, getTopAlbums } from '../utils/dataManipulation'
 
@@ -13,10 +15,15 @@ const Stats = (props) => {
     if (props.loaded === false){
         return <LoadedFalse loading={props.loading} />
     } else{
+
+        // Playlist link invalid
+        if (props.data === "Error"){
+            return <SpotifyLogin data={props.data}/>
+        }
         
         // Error -> Need Authentication
         if (props.error){
-            return <SpotifyLogin />
+            return <SpotifyLogin data={props.data}/>
         }
 
         const topArtists = getTopArtists(props.data)
@@ -24,81 +31,46 @@ const Stats = (props) => {
 
         return (
             <div className='playlist-stats clearfix'>
-                <div className="playlist-container">
-                    <div className='playlist-image'>
-                        <img src={props.data['playlist']['images'][0]['url']} alt='playlist logo'></img>
+                <PlaylistInfo data={props.data}/>
+
+                <div className='top-container'>
+                    <div className='top-table-container'>
+                        <h1>Top Artists</h1>
+                        <TopTable topTable={topArtists} 
+                                  top='Artist'
+                        />
                     </div>
-                    <div className='playlist-info'>
-                        <h1 className="nome-playlist">{props.data['playlist']['name']}</h1>
-                        {props.data['playlist']['description'] ? <p className="descricao-playlist">{props.data['playlist']['description']}</p> : <p></p>}
-                        <h2 className="dono-playlist">by {props.data['playlist']['owner']['display_name']}</h2>
+
+                    <div className='top-table-container'>
+                        <h1>Top Albums</h1>
+                        <TopTable topTable={topAlbums} 
+                                  top='Album'
+                        />
                     </div>
                 </div>
 
-                <hr></hr>
+                <div className='songs-info-container'>
+                    <div className='top-table-container'>
+                        <h1>Most Popular Track</h1>
+                        <TrackTable data={props.data} 
+                                    type='most_popular_track'
+                        />
+                    </div>
 
-                <h1>Top Artists</h1>
-                <Table topTable={topArtists} top='artist'/>
+                    <div className='top-table-container'>
+                        <h1>Longest Track</h1>
+                        <TrackTable data={props.data} 
+                                    type='longest_track'
+                        />
+                    </div>
 
-                <h1>Top Albums</h1>
-                <Table topTable={topAlbums} top='album'/>
-
-                <h1>Most Popular</h1>
-                <ul>
-                    <li>
-                        Track Name: {props.data['most_popular_track']['Track Name']}
-                    </li>
-                    <li>
-                        Track Artists: {props.data['most_popular_track']['Track Artists']}
-                    </li>
-                    <li>
-                        Album Name: {props.data['most_popular_track']['Album Name']}
-                    </li>
-                    <li>
-                        Track Popularity: {props.data['most_popular_track']['Track Popularity']}
-                    </li>
-                    <li>
-                        Track Duration: {props.data['most_popular_track']['Track Duration']}
-                    </li>
-                </ul>
-
-                <h1>Longest</h1>
-                <ul>
-                    <li>
-                        Track Name: {props.data['longest_track']['Track Name']}
-                    </li>
-                    <li>
-                        Track Artists: {props.data['longest_track']['Track Artists']}
-                    </li>
-                    <li>
-                        Album Name: {props.data['longest_track']['Album Name']}
-                    </li>
-                    <li>
-                        Track Popularity: {props.data['longest_track']['Track Popularity']}
-                    </li>
-                    <li>
-                        Track Duration: {props.data['longest_track']['Track Duration']}
-                    </li>
-                </ul>
-
-                <h1>Shortest</h1>
-                <ul>
-                    <li>
-                        Track Name: {props.data['shortest_track']['Track Name']}
-                    </li>
-                    <li>
-                        Track Artists: {props.data['shortest_track']['Track Artists']}
-                    </li>
-                    <li>
-                        Album Name: {props.data['shortest_track']['Album Name']}
-                    </li>
-                    <li>
-                        Track Popularity: {props.data['shortest_track']['Track Popularity']}
-                    </li>
-                    <li>
-                        Track Duration: {props.data['shortest_track']['Track Duration']}
-                    </li>
-                </ul>
+                    <div className='top-table-container'>
+                        <h1>Shortest Track</h1>
+                        <TrackTable data={props.data} 
+                                    type='shortest_track'
+                        />
+                    </div>
+                </div>
 
             </div>
         )

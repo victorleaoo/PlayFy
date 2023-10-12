@@ -2,8 +2,13 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Inter, sans-serif;
   margin-top: 85px;
+  background-color: whitesmoke;
 }

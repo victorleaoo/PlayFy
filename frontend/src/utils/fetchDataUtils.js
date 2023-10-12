@@ -1,6 +1,8 @@
-// Check for a Token on the LocalStorage(if there isn't, gets it from the URL)
-// Also checks the expiration time
 export function getTokenFromURL() {
+    /*
+    Check for a Token on the LocalStorage(if there isn't, gets it from the URL)
+    Also checks the expiration time
+    */
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
     let tokenExpiration = window.localStorage.getItem("tokenExpiration");
@@ -8,10 +10,10 @@ export function getTokenFromURL() {
     if (!token && hash) {
         token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
 
-        // Obtenha o tempo de expiração em segundos (suponhamos que o serviço forneça esse valor)
+        // Expiration time in seconds
         const expiresIn = hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1];
 
-        // Calcule a data de expiração em milissegundos a partir do tempo de expiração
+        // Expiration time in milliseconds
         const expirationTime = Date.now() + (parseInt(expiresIn) * 1000);
 
         window.location.hash = "";
@@ -19,13 +21,13 @@ export function getTokenFromURL() {
         window.localStorage.setItem("tokenExpiration", expirationTime);
     }
 
-    // Verifique se o token está expirado e remova-o do localStorage, se necessário
+    // Verify if the token is expired and removes it from the localStorage
     if (token && tokenExpiration) {
         const currentTime = Date.now();
         if (currentTime >= parseInt(tokenExpiration)) {
             window.localStorage.removeItem("token");
             window.localStorage.removeItem("tokenExpiration");
-            token = ""; // Token expirado, defina como null ou trate de acordo com sua lógica
+            token = ""; // Expired token
         }
     }
 

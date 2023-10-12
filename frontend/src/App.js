@@ -52,7 +52,7 @@ function App() {
     }
 
     axios
-      .post("http://localhost:8000/playlist_get_info/", test_data)
+      .post("http://0.0.0.0:8000/playlist_get_info/", test_data)
       .then((response) => setData(response.data))
       .catch((error) => setError(error.message))
       .finally(() => {
