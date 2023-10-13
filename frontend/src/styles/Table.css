@@ -7,7 +7,7 @@
     font-family: sans-serif;
 
     width: 500px;
-    height: 50vh;
+    height: 40vh;
 
     table-layout: fixed;
 
@@ -24,7 +24,7 @@
 .top-table td {
     padding: 12px 15px;
     font-weight: bold;
-    width: 25%;
+    height: 10px;
 }
 
 .top-table tbody tr,
