@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
+import uvicorn
+
 from fastapi.middleware.cors import CORSMiddleware
 
 from playlists.stats import get_all_stats_together
@@ -31,3 +33,6 @@ async def create_item(playlist: PlaylistInfo):
     playlist_stats = get_all_stats_together(playlist.playlist_link, playlist.access_token)
 
     return JSONResponse(playlist_stats)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
