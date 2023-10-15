@@ -12,7 +12,7 @@ from playlists.stats import get_all_stats_together
 app = FastAPI()
 
 # CORS Middleware Config
-origins = ["http://localhost:3000", "http://0.0.0.0:3000", "http://localhost:3000/"]  
+origins = ["http://localhost:3000", "http://0.0.0.0:3000", "http://localhost:3000/", "https://spotify-playlists-web-app.vercel.app/", "https://spotify-playlists-web-app.vercel.app"]  
 
 # App Middleware Config
 app.add_middleware(

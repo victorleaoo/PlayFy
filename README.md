@@ -29,7 +29,7 @@ Running **Python (back-end)**:
 
 1. Enter the `/backend` folder.
 1. Install the required libraries by using: `pip install -r requirements.txt`.
-1. Run the fastapi application: `uvicorn main:app --reload`.
+1. Run the fastapi application: `python3 main.py`.
 
 Running **React/NPM (front-end)**:
 

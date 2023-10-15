@@ -8,10 +8,19 @@ import { getTokenFromURL } from './utils/fetchDataUtils'
 
 import './styles/App.css';
 
-
 let fetchPlaylistData = 0;
 
+const REACT_APP_MODE = 'deploy';
+
 function App() {
+  let backend_url;
+
+  if (REACT_APP_MODE === 'local') {
+    backend_url = 'http://localhost:8000/playlist_get_info/'
+  } else if (REACT_APP_MODE === 'deploy') {
+    backend_url = 'https://spotify-playlists-web-app-backend.vercel.app/playlist_get_info/'
+  }
+
   // States
   const [playlistLink, setPlaylistLink] = useState(""); // Playlist Link
   const [buttonCanBeClicked, setButtonCanBeClicked] = useState(false); // Enable/Disable "Get Stats" Button
@@ -52,7 +61,7 @@ function App() {
     }
 
     axios
-      .post("http://localhost:8000/playlist_get_info/", test_data)
+      .post(backend_url, test_data)
       .then((response) => setData(response.data))
       .catch((error) => setError(error.message))
       .finally(() => {
