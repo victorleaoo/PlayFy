@@ -16,11 +16,9 @@ All you need to do to see these stats is login in with Spotify and input the pla
 
 **IMPORTANT:** The playlist link must be the one present at the **share** option on the Spotify PC App or Spotify open in a browser. As shown below:
 
-<center>
-
-![spotify-link](./media/spotify-print.png)
-
-</center>
+<p align="center">
+  <img src="media/spotify-print.png" />
+</p>
 
 ## How to run it for developers
 
