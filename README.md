@@ -1,5 +1,7 @@
 # [PlayFy - Spotify Playlist's Stats](https://spotify-playlists-web-app.vercel.app/)
 
+![playfy-how](./media/playfy.gif)
+
 ## What is it?
 
 PlayFy is a web application where spotify users can see some interesting stats of their public playlists:
@@ -14,9 +16,11 @@ All you need to do to see these stats is login in with Spotify and input the pla
 
 **IMPORTANT:** The playlist link must be the one present at the **share** option on the Spotify PC App or Spotify open in a browser. As shown below:
 
+<center>
+
 ![spotify-link](./media/spotify-print.png)
 
-![playfy-how](./media/playfy.gif)
+</center>
 
 ## How to run it for developers
 
