@@ -12,6 +12,10 @@ PlayFy is a web application where spotify users can see some interesting stats o
 
 All you need to do to see these stats is login in with Spotify and input the playlist link.
 
+**IMPORTANT:** The playlist link must be the one present at the **share** option on the Spotify PC App or Spotify open in a browser. As shown below:
+
+![spotify-link](./media/spotify-print.png)
+
 ![playfy-how](./media/playfy.gif)
 
 ## How to run it for developers
