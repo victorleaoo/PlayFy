@@ -1,8 +1,18 @@
 import React from 'react'
 
+const REACT_APP_MODE = 'deploy';
+
 const SpotifyLogin = (props) => {
     const CLIENT_ID = "ebe61dc4675e4b0fb672bb7e846536f7"
-    const REDIRECT_URI = "https://spotify-playlists-web-app.vercel.app/"
+
+    let REDIRECT_URI;
+
+    if (REACT_APP_MODE === 'local') {
+        REDIRECT_URI = 'http://localhost:8000/'
+    } else if (REACT_APP_MODE === 'deploy') {
+        REDIRECT_URI = "https://spotify-playlists-web-app.vercel.app/"
+    }
+
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 

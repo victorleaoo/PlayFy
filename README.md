@@ -1,4 +1,4 @@
-# PlayFy - Spotify Playlist's Stats
+# [PlayFy - Spotify Playlist's Stats](https://spotify-playlists-web-app.vercel.app/)
 
 ## What is it?
 
@@ -14,7 +14,9 @@ All you need to do to see these stats is login in with Spotify and input the pla
 
 ![playfy-how](./media/playfy.gif)
 
-## How to run it
+## How to run it for developers
+
+For running it locally, it's necessary to change **REACT_APP_MODE** for "local" at `frontend/src/App.js` (line 13) and at `frontend/src/components/statsComponents/SpotifyLogin.js` (line 3).
 
 ### Docker
 
