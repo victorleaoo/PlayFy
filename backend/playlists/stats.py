@@ -5,7 +5,7 @@ import numpy as np
 
 from .getPlaylistInfo import createPlaylistDataFrame, getPlaylist
 
-def get_top_artists(playlist_df):
+def get_top_artists(playlist_df, artists_url):
     """Gets top 5 artists with most tracks apperances on a playlist
 
     Parameters
@@ -32,8 +32,12 @@ def get_top_artists(playlist_df):
     percentage_string = []
     for i in percentage:
         percentage_string.append(str(i) + '%')
+
+    artists_url_list = []
+    for artist in series_top_artists.keys():
+        artists_url_list.append(artists_url[artist])
     
-    df_top_artists = pd.DataFrame({'Artist': series_top_artists.keys(), 'Appearances': series_top_artists.values, '%': percentage_string})
+    df_top_artists = pd.DataFrame({'Artist': series_top_artists.keys(), 'Appearances': series_top_artists.values, '%': percentage_string, 'Artist URL': artists_url_list})
 
     json_top_artists = df_top_artists.to_dict()
 
@@ -54,14 +58,20 @@ def get_top_albums(playlist_df):
     """
 
     df_top_albums = playlist_df.groupby(['Album Name'])['Album Name'].count().sort_values(ascending=False)[0:5]
-    
+
     percentage = np.around(100*df_top_albums.values/len(playlist_df), decimals=2)
     
     percentage_string = []
     for i in percentage:
         percentage_string.append(str(i) + '%')
+
+    albums_url = []
+
+    for album in df_top_albums.keys():
+        album_url = playlist_df[playlist_df['Album Name'] == album].index[0]
+        albums_url.append(playlist_df['Album URL'].iloc[album_url])
     
-    df_top_albums = pd.DataFrame({'Album':df_top_albums.keys(), 'appearances': df_top_albums.values, '%': percentage_string})
+    df_top_albums = pd.DataFrame({'Album':df_top_albums.keys(), 'appearances': df_top_albums.values, '%': percentage_string, 'Album URL': albums_url})
 
     json_top_albums = df_top_albums.to_dict()
     
@@ -118,11 +128,11 @@ def get_all_stats_together(share_link, access_token):
     """
 
     try:
-        playlist_df = createPlaylistDataFrame(share_link, access_token)
+        playlist_df, artists_url = createPlaylistDataFrame(share_link, access_token)
 
         playlist_main_info = getPlaylist(share_link, access_token)
 
-        top_artists = get_top_artists(playlist_df)
+        top_artists = get_top_artists(playlist_df, artists_url)
 
         top_albums = get_top_albums(playlist_df)
 

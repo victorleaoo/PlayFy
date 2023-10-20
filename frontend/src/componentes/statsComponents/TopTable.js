@@ -3,6 +3,7 @@ import React from 'react';
 import '../../styles/Table.css'
 
 const TopTable = (props) => {
+
     return (
         <table className='top-table'>
             <thead>
@@ -15,7 +16,7 @@ const TopTable = (props) => {
             <tbody>
             {props.topTable.map((item, index) => (
                 <tr key={index}>
-                    <td>{item.name}</td>
+                    <td><a href={item.url} target="_blank" rel="noreferrer">{item.name}</a></td>
                     <td>{item.appearances}</td>
                     <td>{item.percentage}</td>
                 </tr>

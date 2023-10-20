@@ -6,6 +6,7 @@ export function getTopArtists(data) {
         name: data['top artists']['Artist'][key],
         appearances: data['top artists']['Appearances'][key],
         percentage: data['top artists']['%'][key],
+        url: data['top artists']['Artist URL'][key]
         })
     );
 
@@ -20,6 +21,7 @@ export function getTopAlbums(data) {
         name: data['top_albums']['Album'][key],
         appearances: data['top_albums']['appearances'][key],
         percentage: data['top_albums']['%'][key],
+        url: data['top_albums']['Album URL'][key]
         })
     );
 

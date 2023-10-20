@@ -8,7 +8,7 @@ const SpotifyLogin = (props) => {
     let REDIRECT_URI;
 
     if (REACT_APP_MODE === 'local') {
-        REDIRECT_URI = 'http://localhost:8000/'
+        REDIRECT_URI = 'http://localhost:3000/'
     } else if (REACT_APP_MODE === 'deploy') {
         REDIRECT_URI = "https://spotify-playlists-web-app.vercel.app/"
     }

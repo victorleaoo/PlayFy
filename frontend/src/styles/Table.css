@@ -75,3 +75,12 @@
         margin: 25px auto;
     }
 }
+
+a{
+    text-decoration: none;
+    color: #013220;
+}
+
+a:visited{
+    color: #013220;
+}
